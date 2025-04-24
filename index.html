@@ -8,9 +8,24 @@
 </head>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=home" />
 <style>
+
+  /* colors 
+    Primary: hsla(240, 30%, 70%, 1)
+    Secondary: hsla(0, 20%, 85%, 1)
+    Accent: hsla(60, 25%, 75%, 1)
+    Text: hsla(0, 0%, 40%, 1)
+
+    2nd set 
+    Primary: hsla(0, 0%, 25%, 1)
+    Secondary: hsla(0, 0%, 75%, 1)
+    Accent: hsla(300, 40%, 60%, 1)
+    Text: hsla(0, 0%, 90%, 1)
+    */
+
   body {
     margin: 0;
     font-family: sans-serif;
+    background: white;
   }
 
   .menu-container {
@@ -18,12 +33,12 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-
     position: fixed;
     width: 30rem;
     height: 3rem;
-    background: linear-gradient(to bottom, green, orange);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(to bottom, rgba(173, 216, 230, 0.6), rgba(173, 216, 230, 0.3)); /* Light blue gradient, semi-transparent */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
     border-radius: 3rem;
     bottom: 1%;
     left: 50%;
@@ -31,21 +46,21 @@
     z-index: 1000;
   }
 
-  .menu-home {
-    
-  }
-
   .menu-hidden {
   visibility: hidden;
 }
 
   .spacer {
+    margin-top: 25px;
     height: 1000px;
+    background: rgb(209, 231, 238);
   }
 
   .section {
-    height: 4000px;
-    background: linear-gradient(to right, orange, green);
+    height: 2500px;
+    background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.324), rgba(255, 255, 255, 0.1)); /* Semi-transparent white with a gradient */
+    backdrop-filter: blur(10px); /* Adjust blur as needed */
+
   }
 
   .service-block {
@@ -126,6 +141,8 @@
       <div class="sticky-text">Floor Installation</div>
     </div>
   </div>
+  <div class="spacer"></div>
+
   
   
   <script>
