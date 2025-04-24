@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>marios remodeling
+  </title>
+</head>
+<style>
+  body {
+    margin: 0;
+    font-family: sans-serif;
+  }
+
+.container {
+  height: 4000px;
+  position: relative;
+  background: rgb(255, 255, 255);
+  backdrop-filter: blur(3px);
+}
+
+
+.spacer {
+  height: 900px;
+}
+
+.sticky-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 94vw;
+  height: 50%vh;
+  left: 3%;
+  border-radius: 40px;
+  background: linear-gradient(to right, rgba(171, 170, 170, 0.718), rgba(203, 203, 203, 0.474));
+}
+
+.sticky-wrapper img {
+  display: block;
+  width: 94%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 40px;
+  margin-bottom: 3%;
+  margin-top: -13%;
+  box-shadow: 0 0 20px 0 rgba(82, 82, 82, 0.805);
+}
+
+.sticky-wrapper2 {
+  position: relative;
+  height: 700px;
+  background: mediumvioletred;
+}
+
+.sticky-wrapper3 {
+  position: relative;
+  height: 700px;
+  background: hsla(60, 50%, 50%, 0.638);
+}
+
+.sticky-text {
+  margin: 3% -3%;
+  width: 86%;
+  left: 7%;
+  display: inline-block;
+  text-align: center;
+  position: sticky;
+  top: 33vh;
+  font-size: 24px;
+  padding: 20px;
+  border-radius: 40px;
+  background: hsla(300, 4%, 55%, 0);
+  box-shadow: 0 0 10px 0;
+  backdrop-filter: blur(3px);
+  border: none;
+  color: white;
+  z-index: 1;
+  transition: transform 0.7s ease-in-out;
+}
+
+.sticky-text:hover {
+  transform: scale(1.03);
+  cursor: pointer;
+}
+
+.sticky-text:active {
+  transform: scale(1.07);
+}
+
+.sticky-text2 {
+  position: sticky;
+  top: 42vh;
+  font-size: 24px;
+  padding: 20px;
+  background: hsla(60, 98%, 51%, 0.331);
+  border: none;
+  color: white;
+}
+
+.sticky-text3 {
+  position: sticky;
+  top: 50vh;
+  font-size: 24px;
+  padding: 20px;
+  background: hsla(0, 50%, 50%, 0.456);
+  border: none;
+  color: black;
+}
+
+.new-section {
+  height: 3000px;
+  position: relative;
+  background: gold;
+}
+
+.service-link {
+  color: transparent;
+  background-image: linear-gradient(to right, red, blue, green);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+</style>
+<body>
+  <div class="container">
+    <div class="spacer"></div>
+    <div class="sticky-wrapper">
+      <div class="sticky-text">
+        This text sticks two-thirds down and stops scrolling up.
+        <a href="bathrooms.html"><span class="service-link"></span></a>
+      </div>
+      <img src="images/bathrooms/ann-flaherty-bbIUfkuXocA-unsplash.webp" alt="">
+    </div>
+
+    <div class="sticky-wrapper2">
+      <div class="sticky-text2">
+        This is the text number 2
+      </div>
+      <img src="images/kitchen/alex-tyson-p5qe5XYmH_w-unsplash.webp" alt="">
+    </div>
+
+    <div class="sticky-wrapper3">
+      <div class="sticky-text3">
+        This is the text number 3
+      </div>
+      <img src="images/floors/gioia-m-_Hb6BGnnvUQ-unsplash.webp" alt="">
+    </div>
+  
+    <div class="content-after"></div>
+  </div> 
+  <div class="new-section"></div>
+  <script>
+  </script>
+</body>
+</html>
