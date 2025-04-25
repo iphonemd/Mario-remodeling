@@ -28,27 +28,82 @@
     background: white;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   .menu-container {
+    position: fixed;
+    left: 50%;
+    bottom: 1%;
+    padding: .3rem;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    position: fixed;
     width: 30rem;
     height: 3rem;
-    background: linear-gradient(to bottom, rgba(173, 216, 230, 0.6), rgba(173, 216, 230, 0.3)); /* Light blue gradient, semi-transparent */
-  backdrop-filter: blur(10px); /* Frosted glass effect */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-    border-radius: 3rem;
-    bottom: 1%;
-    left: 50%;
+    background: linear-gradient(to bottom, rgba(13, 16, 17, 0.6), rgba(0, 251, 138, 0.3)); /* Light blue gradient, semi-transparent */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
     transform: translateX(-50%);
+    border-radius: 3rem;
     z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .menu-container .menu-services {
+    position: absolute;
+    bottom: 3.5rem;
+    left: 66%;
+    transform: translateX(-50%) translateY(10px);
+    background: white;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+  }
+
+  .menu-container .services-icon:hover + .menu-services,
+  .menu-container .menu-services:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .services-icon {
+    cursor: pointer;
+  }
+
+  .menu-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu-links li a {
+    display: block;
+    padding: 0.3rem 1rem;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.2s;
+  }
+
+  .menu-links li a:hover {
+    background-color: hsla(0, 0%, 90%, 1);
+    border-radius: 0.5rem;
+  }
+
+  .menu-home {
+    cursor: pointer;
   }
 
   .menu-hidden {
-  visibility: hidden;
-}
+    visibility: hidden;
+  }
 
   .spacer {
     margin-top: 25px;
@@ -58,9 +113,8 @@
 
   .section {
     height: 2500px;
-    background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.324), rgba(255, 255, 255, 0.1)); /* Semi-transparent white with a gradient */
-    backdrop-filter: blur(10px); /* Adjust blur as needed */
-
+    background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.324), rgba(255, 255, 255, 0.1)); 
+    backdrop-filter: blur(10px);
   }
 
   .service-block {
@@ -98,50 +152,67 @@
     border-radius: 10px;
     z-index: 2;
     transition: transform 0.3s ease-in-out;
+    display: block;
+    text-decoration: none;
   }
 
   .sticky-text:hover {
-  transform: scale(1.03);
-  cursor: pointer;
-}
+    transform: scale(1.03);
+    cursor: pointer;
+  }
 
-.sticky-text:active {
-  transform: scale(1.07);
-}
+  .sticky-text:active {
+    transform: scale(1.07);
+  }
 
 </style>
 <body>
   <!-- menu -->
   <div class="menu-container">
-    <div class="menu-home">
+    <a class="menu-home" href="#">
       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+    </a>
+    <div class="services-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M756-120 537-339l84-84 219 219-84 84Zm-552 0-84-84 276-276-68-68-28 28-51-51v82l-28 28-121-121 28-28h82l-50-50 142-142q20-20 43-29t47-9q24 0 47 9t43 29l-92 92 50 50-28 28 68 68 90-90q-4-11-6.5-23t-2.5-24q0-59 40.5-99.5T701-841q15 0 28.5 3t27.5 9l-99 99 72 72 99-99q7 14 9.5 27.5T841-701q0 59-40.5 99.5T701-561q-12 0-24-2t-23-7L204-120Z"/></svg>
     </div>
-    <div class="menu-services menu-hidden">
-      <div>Bathroom</div>
-      <div>Kitchen</div>
-      <div>Floor</div>
+    <div class="menu-services">
+      <ul class="menu-links">
+        <li><a href="bathroom.html">Bathroom</a></li>
+        <li><a href="bathroom.html">Kitchen</a></li>
+        <li><a href="bathroom.html">Floor</a></li>
+      </ul>
     </div>
   </div>
 
-  <!-- services -->
+    <!-- services -->
   <div class="spacer"></div>
   <div class="section">
     <div class="service-block">
       <img src="images/bathrooms/ann-flaherty-bbIUfkuXocA-unsplash.webp" alt="">
-      <div class="sticky-text">Bathroom Remodeling</div>
+      <a class="sticky-text" href="#bathroom-section">Bathroom Remodeling</a>
     </div>
   
     <div class="service-block">
       <img src="images/kitchen/alex-tyson-p5qe5XYmH_w-unsplash.webp" alt="">
-      <div class="sticky-text">Kitchen Design</div>
+      <a class="sticky-text">Kitchen Design</a>
     </div>
   
     <div class="service-block">
       <img src="images/floors/gioia-m-_Hb6BGnnvUQ-unsplash.webp" alt="">
-      <div class="sticky-text">Floor Installation</div>
+      <a class="sticky-text">Floor Installation</a>
     </div>
   </div>
   <div class="spacer"></div>
+
+  <!-- sections -->
+   <section class="bathroom-section" id="bathroom-section">
+    <div class="bathroom-container">
+      <img src="images/bathrooms/ann-flaherty-bbIUfkuXocA-unsplash.webp" alt="bathroom 1">
+      <img src="images/bathrooms/antonio-araujo-uedQfa8kurA-unsplash.webp" alt="bathroom 1">
+      <img src="images/bathrooms/johnny-woods-1FQp9aymEqQ-unsplash.webp" alt="bathroom 1">
+    </div>
+
+   </section>
 
   
   
