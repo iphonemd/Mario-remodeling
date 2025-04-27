@@ -3,220 +3,1733 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>marios remodeling
-  </title>
-</head>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=home" />
+  <title>M Services - Residential Remodeling</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --primary-color: #00c2ff;
+    --secondary-color: #ff6b6b;
+    --dark-color: #1a1a2e;
+    --light-color: #f7f7f7;
+    --gradient-bg: linear-gradient(135deg, rgba(0, 194, 255, 0.9), rgba(0, 110, 255, 0.8));
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --neon-shadow: 0 0 15px rgba(0, 194, 255, 0.7);
+    --blur-amount: 10px;
+  }
 
-  /* colors 
-    Primary: hsla(240, 30%, 70%, 1)
-    Secondary: hsla(0, 20%, 85%, 1)
-    Accent: hsla(60, 25%, 75%, 1)
-    Text: hsla(0, 0%, 40%, 1)
-
-    2nd set 
-    Primary: hsla(0, 0%, 25%, 1)
-    Secondary: hsla(0, 0%, 75%, 1)
-    Accent: hsla(300, 40%, 60%, 1)
-    Text: hsla(0, 0%, 90%, 1)
-    */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
   body {
     margin: 0;
-    font-family: sans-serif;
-    background: white;
+    font-family: 'Poppins', sans-serif;
+    background: var(--light-color);
+    color: #333;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
   }
 
   html {
     scroll-behavior: smooth;
   }
 
-  .menu-container {
-    position: fixed;
-    left: 50%;
-    bottom: 1%;
-    padding: .3rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 30rem;
-    height: 3rem;
-    background: linear-gradient(to bottom, rgba(13, 16, 17, 0.6), rgba(0, 251, 138, 0.3)); /* Light blue gradient, semi-transparent */
-    backdrop-filter: blur(10px); /* Frosted glass effect */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-    transform: translateX(-50%);
-    border-radius: 3rem;
-    z-index: 1000;
-    transition: transform 0.3s ease-in-out;
-  }
+/* Mobile Menu Toggle hidden , remove visibility if needed */
+.menu-toggle {
+  visibility: hidden;
+  display: none;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 1001;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur-amount));
+  border: 1px solid var(--glass-border);
+  color: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: var(--neon-shadow);
+}
 
-  .menu-container .menu-services {
-    position: absolute;
-    bottom: 3.5rem;
-    left: 66%;
-    transform: translateX(-50%) translateY(10px);
-    background: white;
-    border-radius: 1rem;
-    padding: 0.5rem 1rem;
+/* Header with Logo */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur-amount));
+  -webkit-backdrop-filter: blur(var(--blur-amount));
+  border-bottom: 1px solid var(--glass-border);
+  transition: all 0.3s ease;
+}
+
+.header.scrolled {
+  padding: 0.7rem 2rem;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.logo {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.logo img {
+  width: 60px;
+}
+
+.logo span {
+  color: var(--primary-color);
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+  visibility: hidden;
+  display: flex;
+  gap: 2rem;
+}
+
+.desktop-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+}
+
+.desktop-nav a:hover {
+  color: var(--primary-color);
+}
+
+.desktop-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.desktop-nav a:hover::after {
+  width: 100%;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/icons/mservices.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 194, 255, 0.2), rgba(255, 107, 107, 0.2));
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.hero h1 {
+  font-size: 4.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  display: inline-block;
+}
+
+.hero h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: var(--primary-color);
+  box-shadow: var(--neon-shadow);
+}
+
+.hero p {
+  font-size: 1.5rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-btn {
+  padding: 1rem 2rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur-amount));
+  color: white;
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--neon-shadow);
+}
+
+.hero-btn.primary {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.hero-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Main menu container - Floating Navigation */
+.menu-container {
+  position: fixed;
+  left: 50%;
+  bottom: 2%;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: clamp(300px, 40%, 600px);
+  height: 4rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur-amount));
+  -webkit-backdrop-filter: blur(var(--blur-amount));
+  box-shadow: var(--neon-shadow);
+  border: 1px solid var(--glass-border);
+  transform: translateX(-50%);
+  border-radius: 3rem;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.menu-svgs i {
+  color: white;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.menu-svgs:hover i {
+  color: var(--primary-color);
+}
+
+.menu-container {
+  /* Keep your existing styles and add: */
+  transition: all 0.3s ease, background 0.5s ease;
+}
+
+/* Dark mode for light backgrounds */
+.menu-container.dark-mode {
+  background: rgba(0, 0, 0, 0.7);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Light mode for dark backgrounds */
+.menu-container.light-mode {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.menu-container.light-mode .menu-svgs svg {
+  fill: var(--dark-color);
+}
+
+.menu-container.light-mode .menu-svgs i {
+  color: var(--dark-color);
+}
+
+.menu-container.light-mode .menu-services {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.menu-container.light-mode .menu-links li a {
+  color: var(--dark-color);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.menu-container.light-mode .menu-links li a:hover {
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--primary-color);
+}
+
+.menu-container:hover {
+  box-shadow: 0 0 25px rgba(0, 194, 255, 0.8);
+}
+
+/* Menu icons */
+.menu-svgs {
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  margin: 0 0.5rem;
+  background: transparent;
+  position: relative;
+  z-index: 1001;
+}
+
+.menu-svgs:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.menu-svgs a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-svgs svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+  transition: all 0.3s ease;
+}
+
+.menu-svgs:hover svg {
+  fill: var(--primary-color);
+}
+
+/* Services icon */
+.services-icon {
+  cursor: pointer;
+}
+
+.menu-services {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%;
+  padding: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  width: clamp(300px, 50%, 600px);
+  height: 4rem;
+  border-radius: 3rem;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(var(--blur-amount));
+  -webkit-backdrop-filter: blur(var(--blur-amount));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--neon-shadow);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.menu-services::-webkit-scrollbar {
+  display: none;
+}
+
+.services-icon:hover ~ .menu-services, 
+.menu-services:hover {
+  visibility: visible;
+  opacity: 1;
+  height: auto;
+  max-height: 80vh;
+  pointer-events: auto;
+}
+
+/* Dropdown links */
+.menu-links {
+  list-style: none;
+  width: 100%;
+  padding: 1rem;
+}
+
+.menu-links li {
+  margin: 0.5rem 0;
+}
+
+.menu-links li a {
+  display: block;
+  padding: 0.7rem 1rem;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  background: var(--glass-bg);
+  border: 1px solid transparent;
+}
+
+.menu-links li a:hover {
+  background: var(--glass-bg);
+  border-color: var(--glass-border);
+  color: var(--primary-color);
+  transform: translateX(5px);
+}
+
+/* all services offered css*/
+.spacer {
+  margin-top: 0;
+  height: 100px;
+  background: var(--light-color);
+}
+
+.section {
+  min-height: 500px;
+  padding: 5rem 0;
+  background: linear-gradient(to right, rgba(0, 194, 255, 0.1), rgba(255, 107, 107, 0.1));
+  position: relative;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  color: var(--dark-color);
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: var(--primary-color);
+  box-shadow: var(--neon-shadow);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.service-block {
+  position: relative;
+  min-height: 400px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.service-block:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.service-block img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: all 0.5s ease;
+}
+
+.service-block:hover img {
+  transform: scale(1.1);
+}
+
+.service-content {
+  padding: 1.5rem;
+  background: white;
+}
+
+.service-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--dark-color);
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.service-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: var(--primary-color);
+}
+
+.service-desc {
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.service-link {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur-amount));
+  color: var(--dark-color);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.service-link:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  box-shadow: var(--neon-shadow);
+}
+
+/* Service detail sections */
+.service-section {
+  padding: 6rem 2rem;
+  background: white;
+}
+
+.service-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 2rem;
+  margin-top: 2rem;
+}
+
+.service-gallery img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.service-gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.service-description {
+  margin: 2rem 0;
+  line-height: 1.6;
+}
+
+.service-description h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--dark-color);
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.service-description h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: var(--primary-color);
+}
+
+.service-description p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.service-features {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 1rem;
+}
+
+.service-features li {
+  background: var(--light-color);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.service-features li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #f7f7f7, #ffffff);
+}
+
+.service-features li::before {
+  content: '\f00c';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: var(--primary-color);
+}
+
+/* Get A Quote Section */
+.quote-section {
+  padding: 6rem 2rem;
+  background: var(--gradient-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.quote-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('images/pattern-bg.png');
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.quote-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.quote-form {
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.quote-title {
+  font-size: 2rem;
+  color: var(--dark-color);
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.quote-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: var(--primary-color);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--dark-color);
+}
+
+.form-control {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 194, 255, 0.2);
+  outline: none;
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 16px 12px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  width: 100%;
+  box-shadow: var(--neon-shadow);
+}
+
+.form-btn:hover {
+  background: var(--dark-color);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 6rem 2rem;
+  background: var(--light-color);
+  position: relative;
+}
+
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.contact-info {
+  padding: 2rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-info-title {
+  font-size: 2rem;
+  color: var(--dark-color);
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.contact-info-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: var(--primary-color);
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--light-color);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  box-shadow: var(--neon-shadow);
+}
+
+.contact-text {
+  flex: 1;
+}
+
+.contact-label {
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 0.3rem;
+}
+
+.contact-value {
+  color: #666;
+}
+
+.contact-map {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100%;
+  min-height: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.contact-map iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Footer */
+.footer {
+  background: var(--dark-color);
+  color: white;
+  padding: 4rem 2rem 1rem;
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+}
+
+.footer-logo {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.footer-logo span {
+  color: var(--primary-color);
+}
+
+.footer-about p {
+  color: #aaa;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: white;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.social-link:hover {
+  background: var(--primary-color);
+  transform: translateY(-5px);
+}
+
+.footer-title {
+  font-size: 1.2rem;
+  color: white;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.footer-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--primary-color);
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+  color: #aaa;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary-color);
+  transform: translateX(5px);
+}
+
+.footer-links a::before {
+  content: '\f105';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  font-size: 0.8rem;
+}
+
+.footer-contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  color: #aaa;
+}
+
+.footer-contact i {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+.footer-bottom {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #aaa;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: var(--neon-shadow);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: translateY(-5px);
+  background: var(--dark-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
     opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    z-index: 999;
+    transform: translateY(20px);
   }
-
-  .menu-container .services-icon:hover + .menu-services,
-  .menu-container .menu-services:hover {
+  to {
     opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
   }
+}
 
-  .services-icon {
-    cursor: pointer;
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.2s;
+}
+
+.delay-2 {
+  animation-delay: 0.4s;
+}
+
+.delay-3 {
+  animation-delay: 0.6s;
+}
+
+/* Media Queries */
+@media (max-width: 991px) {
+  .desktop-nav {
+    display: none;
   }
-
-  .menu-links {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .menu-links li a {
-    display: block;
-    padding: 0.3rem 1rem;
-    text-decoration: none;
-    color: #333;
-    transition: background 0.2s;
-  }
-
-  .menu-links li a:hover {
-    background-color: hsla(0, 0%, 90%, 1);
-    border-radius: 0.5rem;
-  }
-
-  .menu-home {
-    cursor: pointer;
-  }
-
-  .menu-hidden {
+  
+  /* if need to change the menu this is another menu if needed*/
+  .menu-toggle {
     visibility: hidden;
-  }
-
-  .spacer {
-    margin-top: 25px;
-    height: 1000px;
-    background: rgb(209, 231, 238);
-  }
-
-  .section {
-    height: 2500px;
-    background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.324), rgba(255, 255, 255, 0.1)); 
-    backdrop-filter: blur(10px);
-  }
-
-  .service-block {
-    position: relative;
-    height: 110vh; /* Gives space for scroll effect */
-    padding: 0 3vw; /* Adds spacing to the left and right of the block */
-    box-sizing: border-box;
-  }
-
-  .service-block img {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 94vw;
-    height: 100vh;
-    object-fit: cover;
-    border-radius: 20px; /* Optional: for softer corners */
-    box-shadow: 0 0 20px rgba(0,0,0,0.3); /* Optional: to lift image visually */
-    z-index: 0;
-  }
-
-  .sticky-text {
-    position: sticky;
-    top: 45vh; /* Controls how low it sticks */
-    font-size: 2rem;
-    text-align: center;
-    padding: 1rem 2rem;
-    color: white;
-    background: hsla(0, 0%, 60%, 0.418);
-    box-shadow: 0 0 10px 0;
-    backdrop-filter: blur(5px);
-    width: fit-content;
-    margin: 0 auto;
-    border-radius: 10px;
-    z-index: 2;
-    transition: transform 0.3s ease-in-out;
     display: block;
-    text-decoration: none;
+  }
+  
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
   }
 
-  .sticky-text:hover {
-    transform: scale(1.03);
-    cursor: pointer;
+  .form-row {
+    grid-template-columns: 1fr;
   }
-
-  .sticky-text:active {
-    transform: scale(1.07);
+  
+  .service-description h2 {
+    font-size: 2rem;
   }
+  
+  .menu-container {
+    width: 60%;
+  }
+}
 
+@media (max-width: 480px) {
+  .hero-btns {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .service-features {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
 </style>
 <body>
+  <!-- Mobile Menu Toggle -->
+  <div class="menu-toggle">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- Header with Logo -->
+  <header class="header">
+    <a href="#" class="logo">M<span>Services</span></a>
+    <nav class="desktop-nav">
+      <a href="#">Home</a>
+      <a href="#services">Services</a>
+      <a href="#quote-section">Get a Quote</a>
+      <a href="#contact-section">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content fade-in">
+      <h1>M Services</h1>
+      <p>Quality residential remodeling for every part of your home</p>
+      <div class="hero-btns">
+        <a href="#services" class="hero-btn primary"><i class="fas fa-tools"></i> Our Services</a>
+        <a href="#quote-section" class="hero-btn"><i class="fas fa-clipboard-list"></i> Get a Quote</a>
+      </div>
+    </div>
+  </section>
+
   <!-- menu -->
   <div class="menu-container">
-    <a class="menu-home" href="#">
-      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
-    </a>
-    <div class="services-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M756-120 537-339l84-84 219 219-84 84Zm-552 0-84-84 276-276-68-68-28 28-51-51v82l-28 28-121-121 28-28h82l-50-50 142-142q20-20 43-29t47-9q24 0 47 9t43 29l-92 92 50 50-28 28 68 68 90-90q-4-11-6.5-23t-2.5-24q0-59 40.5-99.5T701-841q15 0 28.5 3t27.5 9l-99 99 72 72 99-99q7 14 9.5 27.5T841-701q0 59-40.5 99.5T701-561q-12 0-24-2t-23-7L204-120Z"/></svg>
+    <!-- Home icon -->
+    <div class="menu-svgs">
+      <a class="menu-home" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+      </a>
     </div>
+    
+    <!-- Services icon -->
+    <div class="menu-svgs services-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M756-120 537-339l84-84 219 219-84 84Zm-552 0-84-84 276-276-68-68-28 28-51-51v82l-28 28-121-121 28-28h82l-50-50 142-142q20-20 43-29t47-9q24 0 47 9t43 29l-92 92 50 50-28 28 68 68 90-90q-4-11-6.5-23t-2.5-24q0-59 40.5-99.5T701-841q15 0 28.5 3t27.5 9l-99 99 72 72 99-99q7 14 9.5 27.5T841-701q0 59-40.5 99.5T701-561q-12 0-24-2t-23-7L204-120Z"/></svg>
+    </div>
+
+    <!-- Quote icon -->
+    <div class="menu-svgs">
+      <a href="#quote-section" class="menu-quote">
+        <i class="fas fa-clipboard-list"></i>
+      </a>
+    </div>
+
+    <!-- Contact icon -->
+    <div class="menu-svgs">
+      <a href="#contact-section" class="menu-contact">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+  
+    <!-- Menu services dropdown -->
     <div class="menu-services">
       <ul class="menu-links">
-        <li><a href="bathroom.html">Bathroom</a></li>
-        <li><a href="bathroom.html">Kitchen</a></li>
-        <li><a href="bathroom.html">Floor</a></li>
+        <li><a href="#bathroom-section">Bathroom</a></li>
+        <li><a href="#kitchen-section">Kitchen</a></li>
+        <li><a href="#floor-section">Floor</a></li>
+        <li><a href="#fence-section">Fence</a></li>
+        <li><a href="#paint-section">Paint</a></li>
+        <li><a href="#woodwork-section">Woodwork</a></li>
+        <li><a href="#waterproofing-section">Waterproofing</a></li>
       </ul>
     </div>
   </div>
 
-    <!-- services -->
-  <div class="spacer"></div>
-  <div class="section">
-    <div class="service-block">
-      <img src="images/bathrooms/ann-flaherty-bbIUfkuXocA-unsplash.webp" alt="">
-      <a class="sticky-text" href="#bathroom-section">Bathroom Remodeling</a>
-    </div>
-  
-    <div class="service-block">
-      <img src="images/kitchen/alex-tyson-p5qe5XYmH_w-unsplash.webp" alt="">
-      <a class="sticky-text">Kitchen Design</a>
-    </div>
-  
-    <div class="service-block">
-      <img src="images/floors/gioia-m-_Hb6BGnnvUQ-unsplash.webp" alt="">
-      <a class="sticky-text">Floor Installation</a>
-    </div>
-  </div>
-  <div class="spacer"></div>
+  <!-- services showcase section with restructured layout -->
+  <div class="spacer" id="services"></div>
+  <section class="section">
+    <h2 class="section-title fade-in">Our Services</h2>
+    <div class="services-grid">
+      <!-- Bathroom Remodeling -->
+      <div class="service-block fade-in delay-1">
+        <img src="images/bathrooms/ann-flaherty-bbIUfkuXocA-unsplash.webp" alt="Bathroom Remodeling">
+        <div class="service-content">
+          <h3 class="service-title">Bathroom Remodeling</h3>
+          <p class="service-desc">Transform your bathroom into a relaxing sanctuary with our complete remodeling services.</p>
+          <a href="#bathroom-section" class="service-link">Learn More</a>
+        </div>
+      </div>
 
-  <!-- sections -->
-   <section class="bathroom-section" id="bathroom-section">
-    <div class="bathroom-container">
-      <img src="images/bathrooms/ann-flaherty-bbIUfkuXocA-unsplash.webp" alt="bathroom 1">
-      <img src="images/bathrooms/antonio-araujo-uedQfa8kurA-unsplash.webp" alt="bathroom 1">
-      <img src="images/bathrooms/johnny-woods-1FQp9aymEqQ-unsplash.webp" alt="bathroom 1">
+      <!-- Kitchen Design -->
+      <div class="service-block fade-in delay-1">
+        <img src="images/kitchen/alex-tyson-p5qe5XYmH_w-unsplash.webp" alt="Kitchen Design">
+        <div class="service-content">
+          <h3 class="service-title">Kitchen Design</h3>
+          <p class="service-desc">Create a beautiful, functional kitchen that meets all your needs with our expert design services.</p>
+          <a href="#kitchen-section" class="service-link">Learn More</a>
+        </div>
+      </div>
+
+      <!-- Floor Installation -->
+      <div class="service-block fade-in delay-2">
+        <img src="images/floors/gioia-m-_Hb6BGnnvUQ-unsplash.webp" alt="Floor Installation">
+        <div class="service-content">
+          <h3 class="service-title">Floor Installation</h3>
+          <p class="service-desc">Professional installation of various flooring types to enhance the look and feel of your home.</p>
+          <a href="#floor-section" class="service-link">Learn More</a>
+        </div>
+      </div>
+
+      <!-- Fence Installation -->
+      <div class="service-block fade-in delay-2">
+        <img src="images/fence-placeholder.jpg" alt="Fence Installation">
+        <div class="service-content">
+          <h3 class="service-title">Fence Installation</h3>
+          <p class="service-desc">Enhance your property's security, privacy, and curb appeal with our professional fence installation.</p>
+          <a href="#fence-section" class="service-link">Learn More</a>
+        </div>
+      </div>
+
+      <!-- Paint Services -->
+      <div class="service-block fade-in delay-3">
+        <img src="images/paint-placeholder.jpg" alt="Paint Services">
+        <div class="service-content">
+          <h3 class="service-title">Paint Services</h3>
+          <p class="service-desc">Transform your space with a fresh coat of paint applied by our expert painting team.</p>
+          <a href="#paint-section" class="service-link">Learn More</a>
+        </div>
+      </div>
+
+      <!-- Wood Work -->
+      <div class="service-block fade-in delay-3">
+        <img src="images/woodwork-placeholder.jpg" alt="Wood Work">
+        <div class="service-content">
+          <h3 class="service-title">Wood Work</h3>
+          <p class="service-desc">Custom woodwork to enhance your home with warmth and character, from built-ins to furniture.</p>
+          <a href="#woodwork-section" class="service-link">Learn More</a>
+        </div>
+      </div>
+
+      <!-- Waterproofing -->
+      <div class="service-block fade-in delay-3">
+        <img src="images/waterproofing-placeholder.jpg" alt="Waterproofing">
+        <div class="service-content">
+          <h3 class="service-title">Waterproofing</h3>
+          <p class="service-desc">Protect your home from water damage with our comprehensive waterproofing solutions.</p>
+          <a href="#waterproofing-section" class="service-link">Learn More</a>
+        </div>
+      </div>
     </div>
+  </section>
 
-   </section>
+  <!-- Bathroom Section -->
+  <section class="service-section" id="bathroom-section">
+    <div class="service-container">
+      <div class="service-description">
+        <h2>Bathroom Remodeling</h2>
+        <p>Transform your bathroom into a relaxing sanctuary with our complete remodeling services. We handle everything from simple updates to full bathroom renovations.</p>
+        <p>Our experienced team works closely with you to create a design that fits your style and budget, ensuring a smooth renovation process from start to finish.</p>
+        <ul class="service-features">
+          <li>Complete bathroom remodels</li>
+          <li>Custom shower installations</li>
+          <li>Bathtub replacements</li>
+          <li>Vanity and cabinet installation</li>
+          <li>Tile flooring and walls</li>
+          <li>Lighting fixtures</li>
+          <li>Plumbing renovations</li>
+          <li>Accessible bathroom designs</li>
+        </ul>
+      </div>
+      <div class="service-gallery">
+        <img src="images/bathrooms/ann-flaherty-bbIUfkuXocA-unsplash.webp" alt="Bathroom Project 1">
+        <img src="images/bathrooms/antonio-araujo-uedQfa8kurA-unsplash.webp" alt="Bathroom Project 2">
+        <img src="images/bathrooms/johnny-woods-1FQp9aymEqQ-unsplash.webp" alt="Bathroom Project 3">
+      </div>
+    </div>
+  </section>
 
+  <!-- Kitchen Section -->
+  <section class="service-section" id="kitchen-section">
+    <div class="service-container">
+      <div class="service-description">
+        <h2>Kitchen Design</h2>
+        <p>Your kitchen is the heart of your home. Our professional kitchen design and remodeling services will help you create a beautiful, functional space that meets all your needs.</p>
+        <p>Whether you're looking for a modern update or a complete renovation, our team will work with you to bring your vision to life.</p>
+        <ul class="service-features">
+          <li>Full kitchen renovations</li>
+          <li>Custom cabinetry</li>
+          <li>Countertop installation</li>
+          <li>Kitchen islands</li>
+          <li>Backsplash design</li>
+          <li>Appliance installation</li>
+          <li>Flooring installation</li>
+          <li>Lighting solutions</li>
+        </ul>
+      </div>
+      <div class="service-gallery">
+        <img src="images/kitchen/alex-tyson-p5qe5XYmH_w-unsplash.webp" alt="Kitchen Project 1">
+        <img src="images/kitchen-placeholder-2.jpg" alt="Kitchen Project 2">
+        <img src="images/kitchen-placeholder-3.jpg" alt="Kitchen Project 3">
+      </div>
+    </div>
+  </section>
+
+  <!-- Floor Section -->
+  <section class="service-section" id="floor-section">
+    <div class="service-container">
+      <div class="service-description">
+        <h2>Floor Installation</h2>
+        <p>Beautiful flooring can transform any space. We offer professional installation of various flooring types to enhance the look and feel of your home.</p>
+        <p>Our expert installers ensure quality workmanship and attention to detail for a flawless finish that will last for years.</p>
+        <ul class="service-features">
+          <li>Hardwood flooring</li>
+          <li>Laminate installation</li>
+          <li>Tile flooring</li>
+          <li>Vinyl and luxury vinyl tile</li>
+          <li>Carpet installation</li>
+          <li>Floor leveling</li>
+          <li>Subfloor repair</li>
+          <li>Floor refinishing</li>
+        </ul>
+      </div>
+      <div class="service-gallery">
+        <img src="images/floors/gioia-m-_Hb6BGnnvUQ-unsplash.webp" alt="Floor Project 1">
+        <img src="images/floor-placeholder-2.jpg" alt="Floor Project 2">
+        <img src="images/floor-placeholder-3.jpg" alt="Floor Project 3">
+      </div>
+    </div>
+  </section>
+
+  <!-- Fence Section -->
+  <section class="service-section" id="fence-section">
+    <div class="service-container">
+      <div class="service-description">
+        <h2>Fence Installation</h2>
+        <p>Enhance your property's security, privacy, and curb appeal with our professional fence installation services. We offer a variety of styles and materials to match your home's aesthetics.</p>
+        <p>Our team ensures precise installation and durable construction for fences that stand the test of time.</p>
+        <ul class="service-features">
+          <li>Wood fence installation</li>
+          <li>Vinyl fencing</li>
+          <li>Aluminum and steel options</li>
+          <li>Privacy fences</li>
+          <li>Decorative fencing</li>
+          <li>Gate installation</li>
+          <li>Fence repair services</li>
+          <li>Custom fence designs</li>
+        </ul>
+      </div>
+      <div class="service-gallery">
+        <img src="images/fence-placeholder-1.jpg" alt="Fence Project 1">
+        <img src="images/fence-placeholder-2.jpg" alt="Fence Project 2">
+        <img src="images/fence-placeholder-3.jpg" alt="Fence Project 3">
+      </div>
+    </div>
+  </section>
+
+  <!-- Paint Section -->
+  <section class="service-section" id="paint-section">
+    <div class="service-container">
+      <div class="service-description">
+        <h2>Paint Services</h2>
+        <p>A fresh coat of paint can completely transform your space. Our professional painting services cover both interior and exterior projects with meticulous preparation and quality execution.</p>
+        <p>We use premium paints and expert techniques to ensure beautiful, long-lasting results for your home.</p>
+        <ul class="service-features">
+          <li>Interior painting</li>
+          <li>Exterior painting</li>
+          <li>Cabinet refinishing</li>
+          <li>Accent walls</li>
+          <li>Trim and molding painting</li>
+          <li>Deck and fence staining</li>
+          <li>Textured painting</li>
+          <li>Color consultation</li>
+        </ul>
+      </div>
+      <div class="service-gallery">
+        <img src="images/paint-placeholder-1.jpg" alt="Paint Project 1">
+        <img src="images/paint-placeholder-2.jpg" alt="Paint Project 2">
+        <img src="images/paint-placeholder-3.jpg" alt="Paint Project 3">
+      </div>
+    </div>
+  </section>
+
+  <!-- Woodwork Section -->
+  <section class="service-section" id="woodwork-section">
+    <div class="service-container">
+      <div class="service-description">
+        <h2>Wood Work</h2>
+        <p>Our skilled craftsmen create beautiful custom woodwork to enhance your home with warmth and character. From built-ins to custom furniture, we combine traditional woodworking techniques with modern design.</p>
+        <p>Each piece is crafted with precision and attention to detail, ensuring exceptional quality and a perfect fit for your space.</p>
+        <ul class="service-features">
+          <li>Custom cabinetry</li>
+          <li>Built-in shelving</li>
+          <li>Furniture creation</li>
+          <li>Wood trim and molding</li>
+          <li>Wood repairs and restoration</li>
+          <li>Mantels and fireplace surrounds</li>
+          <li>Wood paneling</li>
+          <li>Decorative woodwork</li>
+        </ul>
+      </div>
+      <div class="service-gallery">
+        <img src="images/woodwork-placeholder-1.jpg" alt="Woodwork Project 1">
+        <img src="images/woodwork-placeholder-2.jpg" alt="Woodwork Project 2">
+        <img src="images/woodwork-placeholder-3.jpg" alt="Woodwork Project 3">
+      </div>
+    </div>
+  </section>
+
+  <!-- Waterproofing Section -->
+  <section class="service-section" id="waterproofing-section">
+    <div class="service-container">
+      <div class="service-description">
+        <h2>Waterproofing</h2>
+        <p>Protect your home from water damage with our comprehensive waterproofing solutions. We identify and address moisture issues to prevent costly damage and maintain your home's structural integrity.</p>
+        <p>Our expert team uses high-quality materials and proven techniques to ensure effective, long-lasting waterproofing for basements, bathrooms, and other vulnerable areas.</p>
+        <ul class="service-features">
+          <li>Basement waterproofing</li>
+          <li>Bathroom waterproofing</li>
+          <li>Foundation sealing</li>
+          <li>Exterior drainage solutions</li>
+          <li>Interior vapor barriers</li>
+          <li>Leak detection and repair</li>
+          <li>Crawl space encapsulation</li>
+          <li>Mold prevention</li>
+        </ul>
+      </div>
+      <div class="service-gallery">
+        <img src="images/waterproofing-placeholder-1.jpg" alt="Waterproofing Project 1">
+        <img src="images/waterproofing-placeholder-2.jpg" alt="Waterproofing Project 2">
+        <img src="images/waterproofing-placeholder-3.jpg" alt="Waterproofing Project 3">
+      </div>
+    </div>
+  </section>
   
+  <!-- Quote Section -->
+  <section class="quote-section" id="quote-section">
+    <div class="quote-container">
+      <form class="quote-form">
+        <h2 class="quote-title">Get A Free Quote</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="name">Your Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="service">Service Needed</label>
+            <select class="form-control form-select" id="service">
+              <option value="" selected disabled>Select a service</option>
+              <option value="bathroom">Bathroom Remodeling</option>
+              <option value="kitchen">Kitchen Design</option>
+              <option value="floor">Floor Installation</option>
+              <option value="fence">Fence Installation</option>
+              <option value="paint">Paint Services</option>
+              <option value="woodwork">Wood Work</option>
+              <option value="waterproofing">Waterproofing</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Project Details</label>
+          <textarea class="form-control" id="message" rows="5" placeholder="Describe your project needs and timeline"></textarea>
+        </div>
+        <button type="submit" class="form-btn">Submit Request <i class="fas fa-arrow-right"></i></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact-section">
+    <div class="contact-container">
+      <div class="contact-info">
+        <h2 class="contact-info-title">Contact Information</h2>
+        <ul class="contact-list">
+          <li class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-text">
+              <p class="contact-label">Our Location</p>
+              <p class="contact-value">123 Remodeling Avenue, Dallas, TX 75220</p>
+            </div>
+          </li>
+          <li class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="contact-text">
+              <p class="contact-label">Phone Number</p>
+              <p class="contact-value">(214) 555-0123</p>
+            </div>
+          </li>
+          <li class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-text">
+              <p class="contact-label">Email Address</p>
+              <p class="contact-value">mservices@mservices.com</p>
+            </div>
+          </li>
+          <li class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="contact-text">
+              <p class="contact-label">Working Hours</p>
+              <p class="contact-value">Monday - Friday: 8am - 6pm<br>Saturday: 9am - 2pm</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="contact-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d214587.4836876!2d-96.92368988021353!3d32.82066229969891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c19f77b45974b%3A0xb9ec9ba4f647678f!2sDallas%2C%20TX!5e0!3m2!1sen!2sus!4v1682434583619!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-about">
+        <a href="#" class="footer-logo">M<span>Services</span></a>
+        <p>Quality residential remodeling services for your home. We pride ourselves on excellent craftsmanship and customer satisfaction.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3 class="footer-title">Our Services</h3>
+        <ul>
+          <li><a href="#bathroom-section">Bathroom Remodeling</a></li>
+          <li><a href="#kitchen-section">Kitchen Design</a></li>
+          <li><a href="#floor-section">Floor Installation</a></li>
+          <li><a href="#fence-section">Fence Installation</a></li>
+          <li><a href="#paint-section">Paint Services</a></li>
+          <li><a href="#woodwork-section">Wood Work</a></li>
+          <li><a href="#waterproofing-section">Waterproofing</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#quote-section">Get a Quote</a></li>
+          <li><a href="#contact-section">Contact Us</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Reviews</a></li>
+        </ul>
+      </div>
+      <!--<div class="footer-newsletter">
+        <h3 class="footer-title">Newsletter</h3>
+        <p>Subscribe to our newsletter for the latest updates and offers.</p>
+        <form class="footer-form">
+          <input type="email" placeholder="Your email address" class="form-control">
+          <button type="submit" class="form-btn">Subscribe</button>
+        </form>
+      </div>
+    </div> -->
+    <div class="footer-bottom">
+      <p>&copy; 2025 M Services. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: var(--secondary-color);"></i></p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
   
   <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('.header');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      
+      // Back to top button visibility
+      const backToTop = document.querySelector('.back-to-top');
+      if (window.scrollY > 500) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+    
+    // Animation for elements as they enter viewport
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const fadeInObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          fadeInObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.3
+    });
+    
+    fadeElements.forEach(element => {
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(20px)';
+      element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      fadeInObserver.observe(element);
+    });
+    
+    // Mobile menu toggle
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+      const nav = document.querySelector('.desktop-nav');
+      this.classList.toggle('active');
+      
+      if (nav.style.display === 'flex') {
+        nav.style.display = 'none';
+      } else {
+        nav.style.display = 'flex';
+        nav.style.flexDirection = 'column';
+        nav.style.position = 'absolute';
+        nav.style.top = '70px';
+        nav.style.right = '20px';
+        nav.style.background = 'rgba(0, 0, 0, 0.9)';
+        nav.style.padding = '2rem';
+        nav.style.borderRadius = '10px';
+        nav.style.boxShadow = 'var(--neon-shadow)';
+      }
+    });
+
+    // Adaptive navigation based on background
+    const menuContainer = document.querySelector('.menu-container');
+    const darkSections = document.querySelectorAll('.hero, .quote-section, .footer, .section');
+    const lightSections = document.querySelectorAll('.service-section, .contact-section, .spacer');
+
+    // Check initial position
+    checkMenuBgColor();
+
+    // Check on scroll
+    window.addEventListener('scroll', checkMenuBgColor);
+
+    function checkMenuBgColor() {
+      const menuRect = menuContainer.getBoundingClientRect();
+      const menuCenterY = menuRect.top + menuRect.height / 2;
+      let onDarkSection = false;
+      
+      // Check if menu is over a dark section
+      darkSections.forEach(section => {
+        const sectionRect = section.getBoundingClientRect();
+        if (
+          menuCenterY >= sectionRect.top && 
+          menuCenterY <= sectionRect.bottom &&
+          isInViewport(section)
+        ) {
+          onDarkSection = true;
+        }
+      });
+      
+      // Toggle classes based on background
+      if (onDarkSection) {
+        menuContainer.classList.add('light-mode');
+        menuContainer.classList.remove('dark-mode');
+      } else {
+        menuContainer.classList.add('dark-mode');
+        menuContainer.classList.remove('light-mode');
+      }
+    }
+
+    // Helper function to check if element is in viewport
+    function isInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return (
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.bottom >= 0
+      );
+    }
   </script>
 </body>
 </html>
